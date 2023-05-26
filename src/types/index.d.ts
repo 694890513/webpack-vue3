@@ -6,6 +6,8 @@ declare module '*.scss';
 declare module '*.ts';
 declare module '*.js';
 
+declare module 'js-cookie';
+
 declare module '*.vue' {
   import { DefineComponent } from 'vue'
   const component: DefineComponent<{}, {}, any>

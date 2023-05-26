@@ -4,6 +4,9 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const AutoImport = require('unplugin-auto-import/webpack')
+const Components = require('unplugin-vue-components/webpack')
+const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 
 module.exports = {
   entry: {
@@ -114,6 +117,12 @@ module.exports = {
       chunkFilename: 'css/[name].[contenthash].css',
     }),
     new CssMinimizerPlugin(), // css-minimizer-webpack-plugin 插件可以优化、压缩 CSS文件
+    AutoImport({
+      resolvers: [ElementPlusResolver()],
+    }),
+    Components({
+      resolvers: [ElementPlusResolver()],
+    }),
   ],
   // 使用 cache: filesystem 可以缓存构建过程的 webpack 模板，在二次构建时提速。
   cache: {

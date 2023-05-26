@@ -4,7 +4,7 @@
     "module": "esnext", // 用来指定要使用的模块标准: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'
     "strict": true, // 启用所有严格类型检查选项。
     "jsx": "preserve", // 指定jsx代码用于的开发环境: 'preserve', 'react-native', or 'react'
-    "importHelpers": true, // 从 tslib 导入辅助工具函数（比如 __extends， __rest等）
+    // "importHelpers": true, // 从 tslib 导入辅助工具函数（比如 __extends， __rest等）
     "moduleResolution": "node", // 用于选择模块解析策略，有'node'和'classic'两种类型'
     "experimentalDecorators": true, // 模块名到基于 baseUrl的路径映射的列表。
     "skipLibCheck": true, // 忽略所有的声明文件（ *.d.ts）的类型检查。
@@ -12,6 +12,7 @@
     "allowSyntheticDefaultImports": true, // 允许从没有设置默认导出的模块中默认导入。这并不影响代码的输出，仅为了类型检查。
     "sourceMap": true, // 生成相应的 .map文件。
     "baseUrl": ".", // 解析非相对模块名的基准目录, 相对模块不会受baseUrl的影响
+    "noUnusedLocals": true, // 有未使用的局部变量时，抛出错误
     "paths": {
       // 用于设置模块名称到基于baseUrl的路径映射
       "@/*": ["src/*"]

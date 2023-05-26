@@ -1,13 +1,15 @@
 <template>
-  <div>
-    1111
-    <div class="w-[100px] h-60 bg-red-100 text-[20px]">测试</div>
-  </div>
+  <el-config-provider :size="size" :z-index="zIndex">
+    <RouterView />
+  </el-config-provider>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-export default defineComponent({
-  name: "App",
-});
+<script lang="ts" name="App" setup>
+import { RouterView } from "vue-router";
+import { useCommonStore } from "@/stores/common";
+
+const commonStore = useCommonStore();
+const { size, zIndex } = commonStore.getElConfig;
 </script>
+
+<style lang="scss" scoped></style>

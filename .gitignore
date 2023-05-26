@@ -21,6 +21,9 @@ dist-ssr
 *.gz
 web_new
 temp_cache
+components.d*
+auto-imports.d*
+
 
 # Editor directories and files
 # .vscode/*
