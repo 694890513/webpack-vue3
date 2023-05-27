@@ -1,18 +1,16 @@
 const { merge } = require("webpack-merge");
 const webpack = require("webpack");
 const common = require("./webpack.base.config");
-const { resolve,  } = require('./utils.ts')
-const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin")
-const ProgressBarPlugin = require("progress-bar-webpack-plugin")
-const chalk = require("chalk")
+const { resolve } = require("./utils.ts");
+const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
+const ProgressBarPlugin = require("progress-bar-webpack-plugin");
+const chalk = require("chalk");
 
 const devWebpackConfig = merge(common, {
   mode: "development",
   devtool: "eval-cheap-module-source-map",
   module: {
-    rules: [
-     
-    ],
+    rules: [],
   },
   output: {
     path: resolve("dist"),
@@ -56,6 +54,8 @@ const devWebpackConfig = merge(common, {
       "process.env.NODE_ENV": JSON.stringify("development"),
       __VUE_OPTIONS_API__: true,
       __VUE_PROD_DEVTOOLS__: false,
+      __VUE_I18N_FULL_INSTALL__: JSON.stringify(true),
+      __VUE_I18N_LEGACY_API__: JSON.stringify(false),
     }),
   ],
 });
@@ -63,7 +63,7 @@ const devWebpackConfig = merge(common, {
 devWebpackConfig.plugins.push(
   // 进度条
   new ProgressBarPlugin({
-    format: ` :msg [:bar] ${chalk.green.bold(':percent')} (:elapsed s)`,
+    format: ` :msg [:bar] ${chalk.green.bold(":percent")} (:elapsed s)`,
     clear: true,
   }),
   // 错误提示
@@ -77,6 +77,6 @@ devWebpackConfig.plugins.push(
     // 是否每次都清空控制台
     clearConsole: true,
   })
-)
+);
 
 module.exports = devWebpackConfig;

@@ -14,6 +14,11 @@ declare module '*.vue' {
   export default component
 }
 
+const modules: Record<string, any> = {};
+glob.sync('./**/*.ts', { cwd: __dirname }).forEach((file: string) => {
+  modules[file] = import.meta.globEager(file);
+});
+
 // 申明 数组
 declare type EmptyArrayType<T = any> = T[];
 
@@ -54,3 +59,9 @@ declare interface RouteData<T = any> {
 
 // 声明路由当前项类型集合
 declare type RouteDatas<T extends RouteData = any> = T[];
+
+// navBars parent
+declare type ParentViewState<T = any> = {
+	refreshRouterViewKey: string;
+	keepAliveNameList: string[];
+};

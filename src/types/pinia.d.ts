@@ -1,7 +1,7 @@
 /*
  * @Author: Seven
  * @Date: 2023-05-26 13:57:32
- * @LastEditTime: 2023-05-26 15:22:40
+ * @LastEditTime: 2023-05-26 17:52:23
  * @LastEditors: Seven
  * @Description: pinia state类型定义
  */
@@ -42,4 +42,10 @@ declare interface UserInfos<T = any> {
 
 declare interface Common<T = any> {
   [key: string]: T;
+}
+
+// 路由缓存列表
+declare interface KeepAliveNamesState {
+	keepAliveNames: string[];
+	cachedViews: string[];
 }

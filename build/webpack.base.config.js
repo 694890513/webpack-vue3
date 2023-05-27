@@ -7,6 +7,7 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const AutoImport = require('unplugin-auto-import/webpack')
 const Components = require('unplugin-vue-components/webpack')
 const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
+const webpack = require('webpack');
 
 module.exports = {
   entry: {
@@ -122,7 +123,7 @@ module.exports = {
     }),
     Components({
       resolvers: [ElementPlusResolver()],
-    }),
+    })
   ],
   // 使用 cache: filesystem 可以缓存构建过程的 webpack 模板，在二次构建时提速。
   cache: {
