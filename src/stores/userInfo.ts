@@ -1,3 +1,6 @@
+import { getUserInfo } from "@/api/common";
+import { Local } from "@/utils/storage";
+import { useRequest } from "alova";
 import { defineStore } from "pinia";
 
 export const useUserInfoStore = defineStore('userInfo', {
@@ -32,21 +35,33 @@ export const useUserInfoStore = defineStore('userInfo', {
       isShop: ""
     },
     token: '',
+    refreshToken: ''
   }),
   getters: {
     getToken: (state) => state.token,
-    getUserInfo: (state) => state.userInfo,
+    getRefreshToken: (state) => state.refreshToken,
+    // getUserInfo: (state) => state.userInfo,
   },
   actions: {
     setToken(token: string) {
       this.token = token;
     },
+    setTokenHeader(tokenHeader: string) {
+      Local.set('tokenHeader', tokenHeader);
+    },
     removeTOken() {
       this.token = '';
+      Local.remove('token');
+      Local.remove('refreshToken');
+      Local.remove('tokenHeader');
+    },
+    setRefreshToken(refreshToken: string) {
+      Local.set('refreshToken', refreshToken);
     },
     async getApiUserInfo() {
-      return new Promise((resolve, reject) => {
-      });
+      const {data} = useRequest(() => getUserInfo())
+      console.log(data)
+      // this.userInfo = data?.valueOf() as UserInfos['userInfo']
     }
   }
 });

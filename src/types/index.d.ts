@@ -7,6 +7,7 @@ declare module '*.ts';
 declare module '*.js';
 
 declare module 'js-cookie';
+declare module 'crypto-js';
 
 declare module '*.vue' {
   import { DefineComponent } from 'vue'
@@ -15,9 +16,7 @@ declare module '*.vue' {
 }
 
 const modules: Record<string, any> = {};
-glob.sync('./**/*.ts', { cwd: __dirname }).forEach((file: string) => {
-  modules[file] = import.meta.globEager(file);
-});
+
 
 // 申明 数组
 declare type EmptyArrayType<T = any> = T[];
@@ -65,3 +64,7 @@ declare type ParentViewState<T = any> = {
 	refreshRouterViewKey: string;
 	keepAliveNameList: string[];
 };
+
+glob.sync('./**/*.ts', { cwd: __dirname }).forEach((file: string) => {
+  modules[file] = import.meta.globEager(file);
+});

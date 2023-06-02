@@ -1,10 +1,10 @@
 const path = require("path");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+const webpack = require('webpack');
+
 exports.resolve = function (dir) {
   return path.join(__dirname, "..", dir);
 };
-
-
 // babel-loader配置
 exports.babelLoaderConf = {
   loader: "babel-loader",

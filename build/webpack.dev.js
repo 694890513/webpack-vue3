@@ -21,7 +21,7 @@ const devWebpackConfig = merge(common, {
   // 日志打印只打印错误和警告
   stats: "errors-warnings",
   devServer: {
-    host: "0.0.0.0",
+    host: "127.0.0.1",
     historyApiFallback: {
       rewrites: [
         {
@@ -31,7 +31,7 @@ const devWebpackConfig = merge(common, {
       ],
     },
     allowedHosts: "all",
-    port: 8080, // 端口号
+    port: 3483, // 端口号
     open: false, // 自动打开
     hot: true, // 热更新
     client: {
@@ -52,10 +52,19 @@ const devWebpackConfig = merge(common, {
   plugins: [
     new webpack.DefinePlugin({
       "process.env.NODE_ENV": JSON.stringify("development"),
+      "process.env.VITE_API_URL": JSON.stringify(
+        "https://devlotteryapi.22889.club"
+      ),
+      "process.env.VITE_BASE_URL": JSON.stringify(
+        "https://websiteapi.22889.club"
+      ),
+      "process.env.VITE_BASE_MERCHANT": JSON.stringify(9999998),
+      // 可以根据需要添加其他环境变量
       __VUE_OPTIONS_API__: true,
       __VUE_PROD_DEVTOOLS__: false,
       __VUE_I18N_FULL_INSTALL__: JSON.stringify(true),
       __VUE_I18N_LEGACY_API__: JSON.stringify(false),
+      __NEXT_NAME__: JSON.stringify(process.env.npm_package_name),
     }),
   ],
 });

@@ -10,17 +10,30 @@ import { useCommonStore } from "@/stores/common";
 import { useI18n } from 'vue-i18n';
 import { computed, watch } from "vue";
 import { useTitle } from "./utils/utils";
+import { getConfig } from '@/api/common'
+import { useRequest } from "alova";
+import { Local } from "./utils/storage";
+import { i18n } from '@/i18n';
+
 // import mittBus from '@/utils/mitt';
 
 // 定义变量内容
-const { messages, locale } = useI18n();
+const {  locale } = useI18n();
 const commonStore = useCommonStore();
 const { size, zIndex } = commonStore.getElConfig;
 const route = useRoute();
 
+const { onSuccess } = useRequest(() => getConfig());
+
+onSuccess((res) => {
+	i18n.global.locale.value = getGlobalI18n.value
+	Local.set('locale', getGlobalI18n.value)
+})
+
 // 获取全局 i18n
 const getGlobalI18n = computed(() => {
-	return messages.value[locale.value];
+	let lang = Local.get('locale')
+	return lang ? lang : locale.value;
 });
 
 

@@ -1,13 +1,12 @@
 const { VueLoaderPlugin } = require("vue-loader");
 const { resolve, babelLoaderConf } = require('./utils.ts')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+// const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+// const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const AutoImport = require('unplugin-auto-import/webpack')
 const Components = require('unplugin-vue-components/webpack')
 const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
-const webpack = require('webpack');
 
 module.exports = {
   entry: {
@@ -111,13 +110,6 @@ module.exports = {
       // favicon: resolve("public/favicon.ico"),
       inject: true,
     }),
-    new CleanWebpackPlugin(),
-    // css抽离
-    new MiniCssExtractPlugin({
-      filename: 'css/[name].[contenthash].css',
-      chunkFilename: 'css/[name].[contenthash].css',
-    }),
-    new CssMinimizerPlugin(), // css-minimizer-webpack-plugin 插件可以优化、压缩 CSS文件
     AutoImport({
       resolvers: [ElementPlusResolver()],
     }),
