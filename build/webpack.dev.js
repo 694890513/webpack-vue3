@@ -36,7 +36,7 @@ const devWebpackConfig = merge(common, {
     hot: true, // 热更新
     client: {
       progress: false, // 将运行进度输出到控制台。
-      overlay: { warnings: false, errors: true }, // 全屏显示错误信息
+      overlay: { warnings: false, errors: false }, // 全屏显示错误信息
     },
     compress: true, // 为所有服务启用gzip 压缩
     proxy: {

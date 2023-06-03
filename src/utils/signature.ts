@@ -7,9 +7,14 @@ import { deepCopy, encryptWithMD5, handleEmptyObj, randomGuid } from "./utils"
  * @param {*} T 请求参数类型
  * @return {*} 带签名的请求参数
  */
-const createSignature = <T>(data: any): Signture<T> => {
+const createSignature = <T>(data: any, isRefreshApi?: boolean): Signture<T> => {
   // 拷贝configData
   let configData = deepCopy(data)
+  if (isRefreshApi) {
+    Object.keys(configData).forEach((key: any) => {
+      if (key === 'signature' || key === 'timestamp') delete configData[key]
+    })
+  }
   configData = handleEmptyObj(configData)
   configData.language = Language[Local.get('locale')]
   configData.random = randomGuid()
